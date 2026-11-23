@@ -1,0 +1,41 @@
+hooks/state.ts
+  0528b52927479e22 5,12
+types/index.d.ts
+  0528b52927479e22 57-69,78
+hooks/register.tsx
+  0528b52927479e22 16,26,34-37
+tests/panel.test.tsx
+  0528b52927479e22 1-159
+hooks/commands.ts
+  0528b52927479e22 8,111,119-128,154-155
+hooks/panel.tsx
+  0528b52927479e22 1-614
+hooks/panel-core.ts
+  0528b52927479e22 1-347
+tests/panel-core.test.ts
+  0528b52927479e22 1-179
+hooks/role-files.ts
+  0528b52927479e22 18-20,27,35
+README.md
+  0528b52927479e22 5-9,28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.23",
+  "base_commit_sha": "b05de98dc577949071999814e71d65e5ccb91e1e",
+  "prompts": {
+    "0528b52927479e22": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1c90a07c-21b3-4c00-a58b-3735b71707fc",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "ygrip <yunaz.gilang@gmail.com>",
+      "messages": [],
+      "total_additions": 1365,
+      "total_deletions": 28,
+      "accepted_lines": 1346,
+      "overriden_lines": 0
+    }
+  }
+}
