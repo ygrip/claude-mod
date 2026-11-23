@@ -54,6 +54,19 @@ export type AdvisorRecord = {
 
 export type AdvisorData = { next: number; records: AdvisorRecord[] }
 
+export type PanelTab = 'agents' | 'cost' | 'roles'
+
+/** What the jar panel remembers between draws: the tab, the open agent, the role being edited. */
+export type PanelState = {
+  tab: PanelTab
+  agentId?: string
+  editRole?: string
+  draftHead: string
+  draftEffort: string
+  draftScope: 'global' | 'project'
+  notice?: string
+}
+
 declare module 'claude-code' {
   interface PluginState {
     'jar': {
@@ -62,6 +75,7 @@ declare module 'claude-code' {
       route: RouteNote | null
       discussion: Shaped<HubData>
       advisor: Shaped<AdvisorData>
+      panel: Shaped<PanelState>
     }
   }
 }

@@ -2,6 +2,11 @@
 
 pi-jar's feel for Claude Code, in amber.
 
+- **Panel** (`/jar`): one interactive pane with three tabs. Keys `1` `2` `3` switch tabs, Tab and the arrows move, Enter picks, Esc closes.
+  - **Agents**: every subagent with status, role model, run time, tokens and cost; pick one for its detail (task, cwd, context bar and growth, token split, last request).
+  - **Cost**: session total, main thread versus subagents, 5-hour and weekly plan limits with reset time, the costliest subagents, and subagent tokens per model.
+  - **Roles**: every model role with where it comes from (default, global, project). Pick one to change its model, effort and file, or type a model id; Save writes the roles file, Reset removes the entry.
+  - Open a tab directly with `/jar agents`, `/jar cost` or `/jar roles`; `/jar status` prints the old text summary.
 - **Ember**: pi-jar's pixel mascot above the prompt. Its mood follows the turn (happy or thinking while generating, busy during tools, waiting on a question, a hop when a turn ends, sleepy when idle).
 - **Task perch**: the session's tasks beside Ember (`▸ Tasks · 3/7 done · current`). Press `t` with the band focused, or run `/jar tasks`, to expand it.
 - **Spinner**: pi-jar's phrases ("Kindling a thought", "Tracing light through Bash").
@@ -20,7 +25,7 @@ Override them in `~/.claude/jar/roles.json`, or per project in `.claude/jar-role
 { "version": 2, "roles": { "worker": "opus", "reviewer": "@plan:high" } }
 ```
 
-Or run `/jar-roles set worker opus [--project]`, `/jar-roles clear worker`, and `/jar-roles list`.
+Or use the Roles tab of `/jar`, or run `/jar-roles set worker opus [--project]`, `/jar-roles clear worker`, and `/jar-roles list`. Edits apply on the next subagent spawn.
 
 ## Settings
 

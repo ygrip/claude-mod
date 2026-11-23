@@ -5,6 +5,7 @@ import type { Args, CommandRunResult, EngineInterface, On, PluginOptions } from 
 import { advisorSummary, startAdvisor } from './advisor'
 import type { NextFn, StepResult } from './chain'
 import { discussionSummary } from './discuss'
+import { openPanel, tabFromWord } from './panel'
 import { loadRoles, readRoleFile, type RoleScope, writeRoleFile } from './role-files'
 import { describeRoles, isRoleName, normalizeSpec } from './roles'
 import { INITIAL_BOARD, INITIAL_ROUTE } from './state'
@@ -107,13 +108,23 @@ async function jarStatus($: EngineInterface, options: PluginOptions): Promise<st
     routeLine,
     await advisorSummary($),
     await discussionSummary($),
-    'commands: /jar tasks (expand/collapse the task perch), /jar-roles, /jar-advisor [focus]',
+    'commands: /jar (panel: agents, cost, roles), /jar tasks (expand/collapse the task perch), /jar-roles, /jar-advisor [focus]',
     "note: Claude Code's own task list may still show beside the perch.",
   ].join('\n')
 }
 
 async function runJar($: EngineInterface, args: string, options: PluginOptions): Promise<string> {
   const action = args.trim()
+
+  if (action === '') {
+    return openPanel($)
+  }
+
+  const tab = tabFromWord(action)
+
+  if (tab !== undefined) {
+    return openPanel($, tab)
+  }
 
   if (action === 'tasks') {
     await update($, boardAtom, board => ({ ...board, isExpanded: !board.isExpanded }))
@@ -140,8 +151,8 @@ export async function commandsSessionStart(
   const answer = await next(e)
   await $.command.register({
     name: 'jar',
-    description: 'jar status and toggles',
-    argumentHint: '[tasks|discuss|advisor]',
+    description: 'Open the jar panel: subagents, cost and model roles',
+    argumentHint: '[agents|cost|roles|status|tasks|discuss|advisor]',
     immediate: true,
   })
   await $.command.register({

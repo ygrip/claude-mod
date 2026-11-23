@@ -15,13 +15,16 @@ export async function roleFilePath($: EngineInterface, scope: RoleScope): Promis
   return `${home}/.claude/jar/roles.json`
 }
 
-const EMPTY: RoleConfig = { version: 2, roles: {} }
+/** A fresh object each time: callers add roles to what they read, and a shared one would leak between scopes. */
+function emptyConfig(): RoleConfig {
+  return { version: 2, roles: {} }
+}
 
 export async function readRoleFile($: EngineInterface, scope: RoleScope): Promise<RoleConfig> {
   const path = await roleFilePath($, scope)
 
   if (!(await $.fs.exists(path))) {
-    return EMPTY
+    return emptyConfig()
   }
 
   try {
@@ -29,7 +32,7 @@ export async function readRoleFile($: EngineInterface, scope: RoleScope): Promis
   } catch (error) {
     $.ui.log(`jar roles: ${path} ignored (${String(error)})`)
 
-    return EMPTY
+    return emptyConfig()
   }
 }
 

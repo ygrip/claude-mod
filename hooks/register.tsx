@@ -13,6 +13,7 @@ import {
   discussTurnStart,
   registerDiscuss,
 } from './discuss'
+import { panelSessionStart, registerPanel } from './panel'
 import { perchSessionStart, registerPerch } from './perch'
 import { configureRoute, routeAgentSpawn } from './route'
 import { registerSpinner, spinnerToolCall, spinnerTurnStart } from './spinner'
@@ -22,6 +23,7 @@ export const register: Register = (on, options) => {
   configureRoute(options)
   registerAdvisor(on, options)
   registerPerch(on, options)
+  registerPanel(on)
   registerSpinner(on)
   registerDiscuss(on)
   registerCommands(on, options)
@@ -29,8 +31,10 @@ export const register: Register = (on, options) => {
   on('session.start', async ($, e, next) =>
     themeSessionStart($, e, e1 =>
       perchSessionStart($, e1, e2 =>
-        discussSessionStart($, e2, e3 =>
-          advisorSessionStart($, e3, e4 => commandsSessionStart($, e4, next)),
+        panelSessionStart($, e2, e3 =>
+          discussSessionStart($, e3, e4 =>
+            advisorSessionStart($, e4, e5 => commandsSessionStart($, e5, next)),
+          ),
         ),
       ),
     ),
