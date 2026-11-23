@@ -1,0 +1,29 @@
+LICENSE
+  0528b52927479e22 1-21
+.gitignore
+  0528b52927479e22 1-3
+README.md
+  0528b52927479e22 28-41
+.claude-plugin/plugin.json
+  0528b52927479e22 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.23",
+  "base_commit_sha": "13fbb768da4f6e70713405734bca0524dc6f7ac1",
+  "prompts": {
+    "0528b52927479e22": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1c90a07c-21b3-4c00-a58b-3735b71707fc",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "ygrip <yunaz.gilang@gmail.com>",
+      "messages": [],
+      "total_additions": 39,
+      "total_deletions": 2,
+      "accepted_lines": 39,
+      "overriden_lines": 0
+    }
+  }
+}
