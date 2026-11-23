@@ -1,0 +1,28 @@
+{
+  "name": "jar",
+  "version": "0.1.0",
+  "description": "pi-jar for Claude Code: Ember the amber mascot, task perch, model roles with auto route, jar_discuss and an auto advisor.",
+  "author": { "name": "ygrip" },
+  "license": "MIT",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "autoRoute": {
+      "type": "boolean",
+      "title": "Auto route subagents",
+      "description": "Pick each subagent's model from its role (scout, worker, reviewer, plan).",
+      "default": true
+    },
+    "advisorGates": {
+      "type": "boolean",
+      "title": "Auto advisor",
+      "description": "Ask the advisor role for a second opinion when the main agent loops or keeps failing.",
+      "default": true
+    },
+    "mascot": {
+      "type": "boolean",
+      "title": "Show Ember",
+      "description": "Draw Ember the mascot above the prompt.",
+      "default": true
+    }
+  }
+}
